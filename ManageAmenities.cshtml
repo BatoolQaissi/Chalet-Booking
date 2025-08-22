@@ -1,0 +1,83 @@
+﻿@using BookingApp.Models
+@model BookingApp.Models.Room
+
+@{
+    ViewData["Title"] = "إدارة التجهيزات";
+}
+
+<div style="padding-top: 0.5em">
+    <partial name="_StatusMessage" />
+</div>
+
+<div class="card main-card-0_5">
+    <div class="card-body table-responsive">
+
+        <div class="card-header">
+            <div class="row align-items-center">
+
+                <div class="col">
+                    <h2>تجهيزات @TypeTranslate.ToAr(Model.RoomType.ToString())</h2>
+                </div>
+
+                <div class="col-auto">
+                    <input id="searchInput" class="form-control" type="text" placeholder="بحث">
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        نوع التجهيز
+                    </th>
+
+                    <th style="text-align: right; padding-right: 1em;">
+                        الإجراءات
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="resultTable">
+                @foreach (var item in Model.Amenities)
+                {
+                    <tr>
+                        <td>
+                            @AmenityTools.ToAr(item.AmenityType.ToString())
+                        </td>
+                        <td style="text-align:right; padding-right:1em;">
+
+                            <form asp-action="DeleteAmenity" asp-controller="Accommodation" asp-route-id="@item.Id" style="display: inline-block;">
+                                <input type="hidden" asp-for="@item.RoomId" name="roomId" />
+
+                                <button style="background: none; padding: 0px; border: none;" type="submit" title="حذف">
+                                    <i class="bi bi-trash-fill" style="color:red;"></i>
+                                </button>
+                            </form>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div>
+            <form class="row row-cols-lg-auto g-3 align-items-center" asp-action="AddAmenity" asp-controller="Accommodation" asp-route-id="@Model.Id">
+                <div class="col-12">
+                    <select name="amenityType" class="form-select">
+                        @foreach (string amenityTypeStr in ViewBag.AmenityTypes)
+                        {
+                            <option value="@amenityTypeStr">@AmenityTools.ToAr(amenityTypeStr)</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-12">
+                    <button class="btn btn-success" type="submit">
+                        <span class="bi bi-plus"></span> إضافة
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

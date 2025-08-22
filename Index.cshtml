@@ -1,41 +1,81 @@
-﻿@page
-@using BookingApp.Areas.Identity.Pages.Account.Manage
-@model IndexModel
+﻿@using Microsoft.AspNetCore.Identity
+@using BookingApp.Models
+
+@model IEnumerable<BookingApp.Models.User>
+@inject UserManager<User> userManager;
+
 @{
-    ViewData["Title"] = "الملف الشخصي";
-    ViewData["ActivePage"] = ManageNavPages.Index;
+    ViewData["Title"] = "إدارة المستخدمين";
 }
 
-<h4>@ViewData["Title"]</h4>
-<partial name="_StatusMessage" model="Model.StatusMessage" />
-<div class="row">
-    <div class="col-md-6">
-        <form id="profile-form" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="card main-card">
+    <div class="card-body table-responsive">
 
-            <div class="form-group">
-                <label asp-for="Input.FirstName"></label>
-                <input asp-for="Input.FirstName" class="form-control" />
-                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+        <div class="card-header">
+            <div class="row align-items-center">
+
+                <div class="col">
+                    <h2>المستخدمون</h2>
+                </div>
+
+                <div class="col-auto">
+                    <input id="searchInput" class="form-control" type="text" placeholder="بحث">
+                </div>
+
             </div>
+        </div>
 
-            <div class="form-group">
-                <label asp-for="Input.LastName"></label>
-                <input asp-for="Input.LastName" class="form-control" />
-                <span asp-validation-for="Input.LastName" class="text-danger"></span>
-            </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>الاسم الأول</th>
+                    <th>اسم العائلة</th>
+                    <th>البريد الإلكتروني</th>
+                    <th>الدور</th>
+                    <th style="text-align: right; padding-right: 1em;">إجراءات</th>
+                </tr>
+            </thead>
+            <tbody id="resultTable">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.Raw((await userManager.GetRolesAsync(item)).FirstOrDefault())
+                        </td>
+                        <td style="text-align:right; padding-right:1em;">
 
-            <div class="form-group">
-                <label asp-for="Input.PhoneNumber"></label>
-                <input asp-for="Input.PhoneNumber" class="form-control" />
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
+                            <form asp-action="Details" asp-route-id="@item.Id" method="get" style="display: inline-block;">
+                                <button style="background: none; padding: 0px; border: none;" type="submit">
+                                    <i class="bi bi-eye-fill" style="color:dodgerblue; padding-right:1em;"></i>
+                                </button>
+                            </form>
 
-            <button id="update-profile-button" type="submit" class="btn btn-primary">تحديث</button>
-        </form>
+                            <form asp-action="Edit" asp-route-id="@item.Id" method="get" style="display: inline-block;">
+                                <button style="background: none; padding: 0px; border: none;" type="submit">
+                                    <i class="bi bi-pencil-fill" style="color:orange;  padding-right:1em;"></i>
+                                </button>
+                            </form>
+
+                            <form asp-action="Delete" asp-route-id="@item.Id" method="get" style="display: inline-block;">
+                                <button style="background: none; padding: 0px; border: none;" type="submit">
+                                    <i class="bi bi-trash-fill" style="color:red;"></i>
+                                </button>
+                            </form>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}

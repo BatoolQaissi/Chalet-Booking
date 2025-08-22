@@ -1,24 +1,26 @@
-﻿@page
-@using BookingApp.Areas.Identity.Pages
-@model ErrorModel
+﻿@using BookingApp.Models
+@model ErrorViewModel
 @{
-    ViewData["Title"] = "Error";
+    ViewData["Title"] = "خطأ";
 }
 
-<h1 class="text-danger">Erreur.</h1>
-<h2 class="text-danger">Une erreur s'est produite lors du traitement de votre demande.</h2>
+<h1 class="text-danger">خطأ.</h1>
+<h2 class="text-danger">حدث خطأ أثناء معالجة طلبك.</h2>
 
 @if (Model.ShowRequestId)
 {
     <p>
-        <strong>ID de la demande:</strong> <code>@Model.RequestId</code>
+        <strong>معرّف الطلب:</strong> <code>@Model.RequestId</code>
     </p>
 }
 
-<h3>Mode de développement</h3>
+<h3>وضع التطوير</h3>
 <p>
-    Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.
+    عند تفعيل <strong>وضع التطوير</strong> ستظهر معلومات أكثر عن الخطأ.
 </p>
 <p>
-    <strong>Development environment should not be enabled in deployed applications</strong>, as it can result in sensitive information from exceptions being displayed to end users. For local debugging, development environment can be enabled by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>, and restarting the application.
+    <strong>لا يجب تفعيل وضع التطوير في التطبيقات المنشورة.</strong>
+    قد يؤدي ذلك إلى عرض معلومات حساسة للمستخدمين.
+    للتصحيح المحلي، فعّل متغير البيئة <strong>ASPNETCORE_ENVIRONMENT</strong> إلى <strong>Development</strong>
+    وأعد تشغيل التطبيق.
 </p>
