@@ -1,0 +1,28 @@
+﻿@page
+@using BookingApp.Areas.Identity.Pages.Account.Manage
+@model GenerateRecoveryCodesModel
+@{
+    ViewData["Title"] = "توليد رموز الاسترداد";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+<h4>@ViewData["Title"]</h4>
+<div class="alert alert-warning" role="alert">
+    <p>
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        <strong>احتفظ بهذه الرموز في مكان آمن.</strong>
+    </p>
+    <p>
+        إذا فقدت جهازك ولم يكن لديك رموز الاسترداد، ستفقد الوصول إلى حسابك.
+    </p>
+    <p>
+        توليد رموز استرداد جديدة لا يغير المفتاح المستخدم في تطبيقات المصادقة. إذا كنت ترغب في تغيير المفتاح
+        المستخدم في تطبيق المصادقة، يجب عليك <a asp-page="./ResetAuthenticator">إعادة تعيين مفتاح المصادقة الخاص بك.</a>
+    </p>
+</div>
+<div>
+    <form method="post" class="form-group">
+        <button class="btn btn-danger" type="submit">توليد رموز الاسترداد</button>
+    </form>
+</div>

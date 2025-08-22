@@ -1,0 +1,25 @@
+﻿@page
+@using BookingApp.Areas.Identity.Pages.Account.Manage
+@model ResetAuthenticatorModel
+@{
+    ViewData["Title"] = "إعادة تعيين مفتاح المصادقة";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+<h4>@ViewData["Title"]</h4>
+<div class="alert alert-warning" role="alert">
+    <p>
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        <strong>إذا قمت بإعادة تعيين مفتاح المصادقة، فلن تعمل تطبيق المصادقة الخاص بك حتى تقوم بإعادة إعداده.</strong>
+    </p>
+    <p>
+        هذه العملية تقوم بإيقاف تفعيل المصادقة الثنائية (2FA) حتى تعيد إعداد تطبيق المصادقة الخاص بك.
+        إذا لم تكمل إعداد تطبيق المصادقة، فقد تفقد الوصول إلى حسابك.
+    </p>
+</div>
+<div>
+    <form id="reset-authenticator-form" method="post" class="form-group">
+        <button id="reset-authenticator-button" class="btn btn-danger" type="submit">إعادة تعيين مفتاح المصادقة</button>
+    </form>
+</div>

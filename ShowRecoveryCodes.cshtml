@@ -1,0 +1,26 @@
+﻿@page
+@using BookingApp.Areas.Identity.Pages.Account.Manage
+@model ShowRecoveryCodesModel
+@{
+    ViewData["Title"] = "رموز الاسترداد";
+    ViewData["ActivePage"] = "TwoFactorAuthentication";
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+<h4>@ViewData["Title"]</h4>
+<div class="alert alert-warning" role="alert">
+    <p>
+        <strong>احتفظ بهذه الرموز في مكان آمن.</strong>
+    </p>
+    <p>
+        إذا فقدت جهازك ولم تكن تملك رموز الاسترداد، فستفقد إمكانية الوصول إلى حسابك.
+    </p>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        @for (var row = 0; row < Model.RecoveryCodes.Length; row += 2)
+        {
+            <code class="recovery-code">@Model.RecoveryCodes[row]</code><text>&nbsp;</text><code class="recovery-code">@Model.RecoveryCodes[row + 1]</code><br />
+        }
+    </div>
+</div>

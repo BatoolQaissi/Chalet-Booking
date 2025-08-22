@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace BookingApp.Areas.Identity.Pages.Account
+{
+    public class AccessDeniedModel : PageModel
+    {
+        public void OnGet()
+        {
+            // لا يوجد صلاحية للوصول إلى هذه الصفحة
+        }
+    }
+}
+

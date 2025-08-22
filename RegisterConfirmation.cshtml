@@ -1,0 +1,25 @@
+﻿@page
+@using BookingApp.Areas.Identity.Pages.Account
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "تأكيد التسجيل";
+}
+
+<h1>@ViewData["Title"]</h1>
+@{
+    if (@Model.DisplayConfirmAccountLink)
+    {
+<p>
+    هذا التطبيق لا يحتوي حاليًا على خدمة إرسال بريد إلكتروني حقيقية. راجع 
+    <a href="https://aka.ms/aspaccountconf">هذه الوثائق</a> لمعرفة كيفية إعداد مرسل بريد إلكتروني فعّال.<br />
+    عادةً ما يتم إرسال الرابط عبر البريد الإلكتروني: 
+    <a id="confirm-link" href="@Model.EmailConfirmationUrl">انقر هنا لتأكيد حسابك</a>
+</p>
+    }
+    else
+    {
+<p>
+    يُرجى التحقق من بريدك الإلكتروني لتأكيد حسابك.
+</p>
+    }
+}

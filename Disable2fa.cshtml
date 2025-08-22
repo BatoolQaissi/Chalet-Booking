@@ -1,0 +1,26 @@
+﻿@page
+@using BookingApp.Areas.Identity.Pages.Account.Manage
+@model Disable2faModel
+@{
+    ViewData["Title"] = "تعطيل المصادقة الثنائية (2FA)";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+<h2>@ViewData["Title"]</h2>
+
+<div class="alert alert-warning" role="alert">
+    <p>
+        <strong>هذا الإجراء يعطل فقط المصادقة الثنائية.</strong>
+    </p>
+    <p>
+        تعطيل المصادقة الثنائية لا يغير المفاتيح المستخدمة في تطبيقات المصادقة. إذا أردت تغيير المفتاح
+        المستخدم في تطبيق المصادقة، يجب عليك <a asp-page="./ResetAuthenticator">إعادة تعيين مفاتيح المصادقة الخاصة بك.</a>
+    </p>
+</div>
+
+<div>
+    <form method="post" class="form-group">
+        <button class="btn btn-danger" type="submit">تعطيل المصادقة الثنائية</button>
+    </form>
+</div>

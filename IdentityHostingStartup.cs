@@ -1,0 +1,27 @@
+﻿using System;
+using BookingApp.Data;
+using BookingApp.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
+[assembly: HostingStartup(typeof(BookingApp.Areas.Identity.IdentityHostingStartup))]
+namespace BookingApp.Areas.Identity
+{
+    public class IdentityHostingStartup : IHostingStartup
+    {
+        public void Configure(IWebHostBuilder builder)
+        {
+            builder.ConfigureServices((context, services) => {
+                 // options.Password.RequireDigit = true;          
+                 // options.Password.RequiredLength = 8;           
+                // options.Password.RequireNonAlphanumeric = false; 
+                // options.Password.RequireUppercase = true;      
+                //options.Password.RequireLowercase = true; 
+            });
+        }
+    }
+}

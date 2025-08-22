@@ -1,0 +1,23 @@
+﻿@using BookingApp.Areas.Identity.Pages.Account.Manage
+@using BookingApp.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">الملف الشخصي</a></li>
+    <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">البريد الإلكتروني</a></li>
+    <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">كلمة المرور</a></li>
+    @if (hasExternalLogins)
+    {
+        <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">تسجيل دخول خارجي</a></li>
+    }
+    <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">المصادقة الثنائية</a></li>
+    <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">البيانات الشخصية</a></li>
+
+    <li><hr class="dropdown-divider"></li>
+
+    <li class="nav-item"><a class="nav-link @ManageNavPages.WalletNavClass(ViewContext)" id="wallet" asp-page="./Wallet">المحفظة الإلكترونية</a></li>
+    <li class="nav-item"><a class="nav-link @ManageNavPages.BookmarkNavClass(ViewContext)" id="bookmark" asp-page="./Bookmark">المفضلة</a></li>
+</ul>

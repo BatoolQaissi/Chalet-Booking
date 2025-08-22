@@ -1,0 +1,27 @@
+﻿@page
+@using BookingApp.Areas.Identity.Pages.Account.Manage
+@model PersonalDataModel
+@{
+    ViewData["Title"] = "البيانات الشخصية";
+    ViewData["ActivePage"] = ManageNavPages.PersonalData;
+}
+
+<h4>@ViewData["Title"]</h4>
+
+<div class="row">
+    <div class="col-md-6">
+        <p>حسابك يحتوي على بيانات شخصية قدمتها لنا. تتيح لك هذه الصفحة تحميل أو حذف هذه البيانات.</p>
+        <p>
+            <strong>حذف بياناتك بالإضافة إلى حسابك هو إجراء نهائي، ولن يكون بالإمكان استعادته.</strong>
+        </p>
+        <form id="download-data" asp-page="DownloadPersonalData" method="post" class="form-group" style="display: inline-block">
+            <button class="btn btn-primary" type="submit">تحميل البيانات</button>
+        </form>
+            
+        <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger">حذف البيانات</a>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

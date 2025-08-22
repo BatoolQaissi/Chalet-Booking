@@ -1,0 +1,34 @@
+﻿@page
+@using BookingApp.Areas.Identity.Pages.Account.Manage
+@model DeletePersonalDataModel
+@{
+    ViewData["Title"] = "حذف البيانات الشخصية";
+    ViewData["ActivePage"] = ManageNavPages.PersonalData;
+}
+
+<h4>@ViewData["Title"]</h4>
+
+<div class="alert alert-warning" role="alert">
+    <p>
+        <strong>حذف هذه البيانات سيؤدي إلى حذف حسابك بشكل دائم، ولن يكون بالإمكان استعادته.</strong>
+    </p>
+</div>
+
+<div>
+    <form id="delete-user" method="post" class="form-group">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        @if (Model.RequirePassword)
+        {
+            <div class="form-group">
+                <label asp-for="Input.Password">كلمة المرور</label>
+                <input asp-for="Input.Password" class="form-control" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+        }
+        <button class="btn btn-danger" type="submit">حذف بياناتي وإغلاق حسابي</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
